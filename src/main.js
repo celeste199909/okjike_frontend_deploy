@@ -9,7 +9,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import axios from "axios"
-axios.defaults.baseURL = 'https://127.0.0.1:9000';
+axios.defaults.baseURL = 'https://112.124.18.251';
 Vue.prototype.axios = axios
 
 
