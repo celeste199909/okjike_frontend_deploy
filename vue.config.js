@@ -1,8 +1,8 @@
 module.exports = {
   // publicPath: '/',
     devServer: {
-      host: 'localhost',
-      port: 9000,
+      // host: 'localhost',
+      // port: 9000,
       proxy: {
         '/api': {  // http://localhost:8081/api/banner
             // 112.124.18.251
