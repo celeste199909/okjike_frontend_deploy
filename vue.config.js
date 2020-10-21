@@ -5,7 +5,7 @@ module.exports = {
      * baseUrl: process.env.NODE_ENV==='production'?"https://cdn.didabisai.com/front/":'front/',
      */
   baseUrl: 'https://okjike.netlify.app/',
-  publicPath: '/',
+  // publicPath: '/',
     devServer: {
       host: '127.0.0.1',
       port: 9000,
