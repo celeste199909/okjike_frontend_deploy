@@ -39,7 +39,7 @@ export default {
   },
 
   created(){
-    axios.get("/api/allArticles")
+    axios.get("/allArticles")
     .then( ( response ) => {
       // console.log(response.data.data)
       this.allArticles = response.data.data
