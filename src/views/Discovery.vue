@@ -52,7 +52,7 @@ export default {
     tags = JSON.parse(tags)
     // console.log(tags);
 
-    axios.post("api/recommendatoryUsers", tags)
+    axios.post("/recommendatoryUsers", tags)
     .then( res => {
       // console.log(res.data.data);
       this.recommendatoryUsers = res.data.data;
