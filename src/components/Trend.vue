@@ -3,7 +3,7 @@
     <article>
       <el-row>
         <!-- 左边 -->
-        <el-col :span="2">
+        <el-col :span="2" class="left" >
           <div class="grid-content bg-purple">
             <el-avatar
               src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
@@ -11,7 +11,7 @@
           </div>
         </el-col>
         <!-- 右边 -->
-        <el-col :span="22">
+        <el-col :span="20" class="right">
           <div class="grid-content bg-purple-light">
             <div class="username">{{ aArticle.username }}</div>
             <div class="slogan">{{ aArticle.slogan }}</div>
@@ -20,9 +20,13 @@
             {{ aArticle.content }}
           </div>
           <div class="grid-content bg-purple-light footer">
-            <div class="footer-item"><i class="el-icon-thumb"></i> <span>{{ aArticle.thumbsup.length }}</span></div>
             <div class="footer-item">
-              <i class="el-icon-chat-dot-round"></i> <span>{{aArticle.comment.length}}</span>
+              <i class="el-icon-thumb"></i>
+              <span>{{ aArticle.thumbsup.length }}</span>
+            </div>
+            <div class="footer-item">
+              <i class="el-icon-chat-dot-round"></i>
+              <span>{{ aArticle.comment.length }}</span>
             </div>
             <!-- <div class="footer-item"><i class="el-icon-star-off"></i> <span>{{aArticle.collection.length}}</span></div> -->
             <!-- <div class="footer-item"><i class="el-icon-share"></i></div> -->
@@ -49,7 +53,7 @@ export default {
         group: "",
         thumbsup: [],
         comment: [],
-        collection: []
+        collection: [],
       },
     };
   },
@@ -58,11 +62,8 @@ export default {
       // console.log(id);
       this.$router.push(`/details/${id}`);
     },
-
   },
-  created() {
-
-  },
+  created() {},
 };
 </script>
 
@@ -78,6 +79,12 @@ export default {
   animation: slidein 0.5s;
   /* transform:translateY(-100px); */
 }
+
+/* @media screen and (max-width: 768px) {
+  .trend{
+    padding: 8px;
+  }
+} */
 @keyframes slidein {
   0% {
     opacity: 0;
@@ -90,7 +97,7 @@ export default {
   cursor: pointer;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   /* background-color: #EFF3F6; */
-  transition: all .2s;
+  transition: all 0.2s;
   /* animation: bgSlide 1s; */
   transform: scale(1.02);
 }

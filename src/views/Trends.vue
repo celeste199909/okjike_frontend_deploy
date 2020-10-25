@@ -1,18 +1,25 @@
 <template>
-  <div id="trends" >
+  <div id="trends">
     <el-row>
       <div class="publish">
         <Publish></Publish>
       </div>
       <!-- <div class="new-trend"><a href="">有新动态，点击查看</a></div> -->
-      <el-col :span="18">
-        <div class="grid-content bg-purple" v-for="(item, index) in allFollowingArticles" :key="index">
+      <el-col :span="18" :xs="{span: 24}">
+        <div
+          class="grid-content bg-purple"
+          v-for="(item, index) in allFollowingArticles"
+          :key="index"
+        >
           <Trend :aArticle="item"></Trend>
         </div>
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple-light">
-          <SideMessage title="推荐用户" :recommendatoryUsers="recommendatoryUsers"></SideMessage>
+          <SideMessage
+            title="推荐用户"
+            :recommendatoryUsers="recommendatoryUsers"
+          ></SideMessage>
         </div>
         <div class="grid-content bg-purple-light">
           <Footer></Footer>
@@ -28,14 +35,14 @@ import SideMessage from "../components/SideMessage";
 import Footer from "../components/Footer";
 import Publish from "../components/Publish";
 
-import axios from "axios"
+import axios from "axios";
 
 export default {
   name: "Trends",
   data() {
     return {
       allFollowingArticles: [],
-      recommendatoryUsers: []
+      recommendatoryUsers: [],
     };
   },
   components: {
@@ -45,38 +52,41 @@ export default {
     Publish,
   },
 
-  created(){
-
+  created() {
     let userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-    if(!userInfo){
-      alert("您还没有登录，请先登录！")
-      this.$router.push("/login")
+    if (!userInfo) {
+      alert("您还没有登录，请先登录！");
+      this.$router.push("/login");
       return;
     }
     let userid = userInfo.id;
-    axios.get(`/myFollowingArticles?userid=${userid}`)
-    .then( (res) => {
-      this.allFollowingArticles = res.data.data;
-      // console.log(res)
-    } )
-    .catch(e => { throw e })
+    axios
+      .get(`/myFollowingArticles?userid=${userid}`)
+      .then((res) => {
+        this.allFollowingArticles = res.data.data;
+        // console.log(res)
+      })
+      .catch((e) => {
+        throw e;
+      });
 
     // 获取推荐用户
 
-    let tags = JSON.parse(localStorage.getItem("userInfo")).tags
-    tags = JSON.parse(tags)
+    let tags = JSON.parse(localStorage.getItem("userInfo")).tags;
+    tags = JSON.parse(tags);
     // console.log(tags);
 
-    axios.post("/recommendatoryUsers", tags)
-    .then( res => {
-      // console.log(res.data.data);
-      this.recommendatoryUsers = res.data.data;
-    })
-    .catch( err => {
-      console.log(err);
-    })
-  }
+    axios
+      .post("/recommendatoryUsers", tags)
+      .then((res) => {
+        // console.log(res.data.data);
+        this.recommendatoryUsers = res.data.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };
 </script>
 
@@ -88,6 +98,17 @@ export default {
 .el-row {
   width: 80%;
   margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  #trends {
+    padding-top: 60px;
+    margin: 0;
+  }
+
+  .el-row {
+    width: 100%;
+    margin: 0;
+  }
 }
 /* .new-trend{
   background-color: white;

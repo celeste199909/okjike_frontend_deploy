@@ -1,9 +1,7 @@
 <template>
     <div id="footer">
         <div>用户协议 | 隐私政策</div>
-        <div>桂ICP备0000000号</div>
-        <div>桂公网安备沪公网安备 00000000000号</div>
-        <div>增值电信业务经营许可证：桂00000-000000</div>
+        <div>桂ICP备xxxxxxxxx号</div>
     </div>
 </template>
 
@@ -32,5 +30,10 @@
     /* box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); */
     animation: slidein 2s ;
 
+}
+@media screen and (max-width: 768px){
+  #footer{
+    display: none;
+  }
 }
 </style>

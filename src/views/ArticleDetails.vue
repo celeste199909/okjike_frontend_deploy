@@ -100,11 +100,6 @@ export default {
       hasThumbsup: false,
     };
   },
-  computed: {
-    //   autoCommentArr() {
-    //       return this.commentArr
-    //   }
-  },
   methods: {
     //   文章格式
     //    {
@@ -131,7 +126,7 @@ export default {
       axios
         .post("/publishComment", aComment)
         .then(() => {
-        //   console.log(res);
+          //   console.log(res);
           this.commentContent = "";
           alert("评论成功！");
         })
@@ -158,40 +153,39 @@ export default {
         });
     },
     handleUserDetails(userid) {
-        // console.log(userid);
-        let currentUserid = JSON.parse(localStorage.getItem("userInfo")).id;
-        // 如果是当前用户 则直接跳转到 personal 页面即可
-        if(Number(userid) === currentUserid){
-            this.$router.push("/personal")
-            return;
-        }
-        axios.get(`/user/${userid}`)
-        .then( res => {
-            // let data = res.data;
-            // console.log(res.data.data);
-            // console.log(res.data.data.aUserArticles);
-            // this.userInfo = data;
-            // 命名的路由
-            this.$router.push({ name: 'UserDetails', params: { userDetails: res.data.data }})
+      let currentUserid = JSON.parse(localStorage.getItem("userInfo")).id;
+      // 如果是当前用户 则直接跳转到 personal 页面即可
+      if (Number(userid) === currentUserid) {
+        this.$router.push("/personal");
+        return;
+      }
+      axios
+        .get(`/user/${userid}`)
+        .then((res) => {
+          // 命名的路由
+          this.$router.push({
+            name: "UserDetails",
+            params: { userDetails: res.data.data },
+          });
         })
-        .catch( err => {
-            console.log(err);
-        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
-  created() {
-    // console.log(location.pathname)
+  mounted () {
+    console.log(location.pathname)
     let pathname = location.pathname;
     axios
-      .get(pathname)
+      .get(`${pathname}`)
       .then((res) => {
-        // console.log(res.data.data)
+        console.log(res.data.data)
         let data = res.data.data;
         this.aArticle = {
-            userid: data.userid,
-            username: data.username,
-            slogan: data.slogan,
-            content: data.content
+          userid: data.userid,
+          username: data.username,
+          slogan: data.slogan,
+          content: data.content,
         };
         // // console.log(JSON.parse(this.aArticle.comment).length)
         this.thumbsupArr = data.thumbsup;
@@ -226,11 +220,19 @@ export default {
   animation: slidein 0.5s;
   /* transform:translateY(-100px); */
 }
+@media screen and (max-width: 768px) {
+  .article-details {
+    margin: 0;
+  }
+  .trend {
+    padding: 10px;
+  }
+}
 .grid-content {
   margin: 8px 0;
 }
-.avatar{
-    cursor: pointer;
+.avatar {
+  cursor: pointer;
 }
 .username {
   font-weight: 800;

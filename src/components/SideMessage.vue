@@ -66,6 +66,11 @@ export default {
   /* box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); */
   animation: slidein 1s;
 }
+@media screen and (max-width: 768px){
+  .wrapper{
+    display: none;
+  }
+}
 
 @keyframes slidein {
   0% {
